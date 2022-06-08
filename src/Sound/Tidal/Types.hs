@@ -105,24 +105,24 @@ functions =
     -- Max should be = number of controls - 1
     ("(#)", Sig [] $ F (Pattern Osc) (F (Pattern Osc) (Pattern Osc)), Max 1),
     --("striate", Sig [] $ F (Pattern Int) (F (Pattern Osc) (Pattern Osc)), Any),
-    ("chop", Sig [] $ F (Pattern Int) (F (Pattern Osc) (Pattern Osc)), Max 1),
+    -- ("chop", Sig [] $ F (Pattern Int) (F (Pattern Osc) (Pattern Osc)), Max 1),
     -- ("floor", Sig [] $ F Float Int, Any),
-    ("sine", floatPat, Any),
-    ("run", Sig [] $ F (Pattern Int) (Pattern Int), Any),
+    -- ("sine", floatPat, Any),
+    -- ("run", Sig [] $ F (Pattern Int) (Pattern Int), Any),
     --("fmap", mapper, Any),
     --("<$>", mapper, Any),
     --("<*>", Sig [WildCard, WildCard] $ F (Pattern $ F (Param 0) (Param 1)) (F (Pattern (Param 0)) (Pattern (Param 1))), Any),
     ("sound", stringToOsc, Max 1),
-    ("vowel", vowelStringToOsc, Max 1),
+    -- ("vowel", vowelStringToOsc, Max 1),
     ("shape", floatToOsc, Max 1),
-    ("speed", floatToOsc, Max 1),
+    -- ("speed", floatToOsc, Max 1),
     -- ("delay", floatToOsc, Any),
     -- ("pan", floatToOsc, Any),
-    ("every", Sig [WildCard] $ F (Pattern Int)
-              (F (F (Pattern $ Param 0) (Pattern $ Param 0))
-                 (F (Pattern $ Param 0) (Pattern $ Param 0))
-              )
-    , Max 3),
+    -- ("every", Sig [WildCard] $ F (Pattern Int)
+    --           (F (F (Pattern $ Param 0) (Pattern $ Param 0))
+    --              (F (Pattern $ Param 0) (Pattern $ Param 0))
+    --           )
+    -- , Max 3),
     -- ("instantgabba", Sig [] $ Pattern Osc, Any),
     ("fast", Sig [WildCard] $ F (Pattern Float) (F (Pattern $ Param 0) (Pattern $ Param 0)), Any),
     ("slow", Sig [WildCard] $ F (Pattern Float) (F (Pattern $ Param 0) (Pattern $ Param 0)), Any),
@@ -152,12 +152,12 @@ functions =
     ("]", Sig [OneOf [String,Int,Float]] (List (Param 0)), Any),
     ("[", Sig [OneOf [String,Int,Float]] (F (List (Param 0)) (Pattern (Param 0))))
  -}
-    ("jux", Sig
-            []
-            (F (F (Pattern Osc) (Pattern Osc))
-             (F (Pattern Osc) (Pattern Osc))
-            )
-    , Max 1),
+    -- ("jux", Sig
+    --         []
+    --         (F (F (Pattern Osc) (Pattern Osc))
+    --          (F (Pattern Osc) (Pattern Osc))
+    --         )
+    -- , Max 1),
      ("rev", Sig [WildCard] $ F (Pattern $ Param 0) (Pattern $ Param 0), Any),
      ("1", Sig [] $ Pattern Int, Any),
      ("2", Sig [] $ Pattern Int, Any),
@@ -173,30 +173,30 @@ functions =
      ("2", Sig [] $ Float, Any),
      ("\"3 4 5\"", Sig [] $ Float, Any),
 -}
-     ("\"{[~ bmkd:7] ~, ~ [bmkd:2*2] ~ ~ }%4\"", Sig [] $ Pattern String, Any),
-     ("\"[db, 808bd:5]\"", Sig [] $ Pattern String, Any),
-     ("\"{[~ svbass:4] ~, ~ [ABass:1*2] ~ ~ }\"", Sig [] $ Pattern String, Any),
-     ("\"[k(3,8,<0 1 2>), clubkick:1*4?]\"", Sig [] $ Pattern String, Any),
-     ("\"~ <sfe:2*2 sfe:1> [~ glitch] ~\"", Sig [] $ Pattern String, Any),
-     ("\"{bmkd:4 ~ sfe-perc:1, clubkick:1  ~ [~ clubkick:1 ] ~}\"", Sig [] $ Pattern String, Any),
-     ("\"~ ss:4 [~ sn:5] cp:1\"", Sig [] $ Pattern String, Any),
-     ("\"[odx*2, bd:3(5,8)] \"", Sig [] $ Pattern String, Any),
-     ("\"<rave:2 rave:3 rave:4 rave:5> \"", Sig [] $ Pattern String, Any),
-     ("\" cp:0(<5>,8,<10 2 8>) \"", Sig [] $ Pattern String, Any),
-     ("\" [sd sd [sd sd:1] ~, sd:1 [~ sd:1] [sd ~ sd] sd*4] \"", Sig [] $ Pattern String, Any),
-     ("\" [k k] [ bmsn:2 ~ ~ bmsn:1] [~ bmsn:3 bmdd:2 ~] [sn] \"", Sig [] $ Pattern String, Any),
-     ("\"[~ stress:2] [~ stress:2] [~ stress:2] [~ stress:2]\"", Sig [] $ Pattern String, Any),
-     ("\"sfe-perc:2/6 [svsn:2 [svk:2]] idmhit:6*2 <~ sfe-perc:3>\"", Sig [] $ Pattern String, Any),
-     ("\"svk:3(< 3 5 7>,8,<0 1 2>)\"", Sig [] $ Pattern String, Any),
-     ("\"meskit1*8?\"", Sig [] $ Pattern String, Any),
-     ("\"k ~ bmsn:2 bmcp:2\"", Sig [] $ Pattern String, Any),
-     ("\"amencutup*8?\"", Sig [] $ Pattern String, Any),
-     ("\" a\"", Sig [] $ Pattern VowelString, Any),
-     ("\" e \"", Sig [] $ Pattern VowelString, Any),
-     ("\"i\"", Sig [] $ Pattern VowelString, Any),
-     ("\"o\"", Sig [] $ Pattern VowelString, Any),
-     ("\"u\"", Sig [] $ Pattern VowelString, Any),
-     ("\"a e i o u\"", Sig [] $ Pattern VowelString, Any)
+     ("\"{[~ bmkd:7] ~, ~ [bmkd:2*2] ~ ~ }%4\"", Sig [] $ Pattern String, Any)
+    --  ("\"[db, 808bd:5]\"", Sig [] $ Pattern String, Any),
+    --  ("\"{[~ svbass:4] ~, ~ [ABass:1*2] ~ ~ }\"", Sig [] $ Pattern String, Any),
+    --  ("\"[k(3,8,<0 1 2>), clubkick:1*4?]\"", Sig [] $ Pattern String, Any),
+    --  ("\"~ <sfe:2*2 sfe:1> [~ glitch] ~\"", Sig [] $ Pattern String, Any),
+    --  ("\"{bmkd:4 ~ sfe-perc:1, clubkick:1  ~ [~ clubkick:1 ] ~}\"", Sig [] $ Pattern String, Any),
+    --  ("\"~ ss:4 [~ sn:5] cp:1\"", Sig [] $ Pattern String, Any),
+    --  ("\"[odx*2, bd:3(5,8)] \"", Sig [] $ Pattern String, Any),
+    --  ("\"<rave:2 rave:3 rave:4 rave:5> \"", Sig [] $ Pattern String, Any),
+    --  ("\" cp:0(<5>,8,<10 2 8>) \"", Sig [] $ Pattern String, Any),
+    --  ("\" [sd sd [sd sd:1] ~, sd:1 [~ sd:1] [sd ~ sd] sd*4] \"", Sig [] $ Pattern String, Any),
+    --  ("\" [k k] [ bmsn:2 ~ ~ bmsn:1] [~ bmsn:3 bmdd:2 ~] [sn] \"", Sig [] $ Pattern String, Any),
+    --  ("\"[~ stress:2] [~ stress:2] [~ stress:2] [~ stress:2]\"", Sig [] $ Pattern String, Any),
+    --  ("\"sfe-perc:2/6 [svsn:2 [svk:2]] idmhit:6*2 <~ sfe-perc:3>\"", Sig [] $ Pattern String, Any),
+    --  ("\"svk:3(< 3 5 7>,8,<0 1 2>)\"", Sig [] $ Pattern String, Any),
+    --  ("\"meskit1*8?\"", Sig [] $ Pattern String, Any),
+    --  ("\"k ~ bmsn:2 bmcp:2\"", Sig [] $ Pattern String, Any),
+    --  ("\"amencutup*8?\"", Sig [] $ Pattern String, Any),
+    --  ("\" a\"", Sig [] $ Pattern VowelString, Any),
+    --  ("\" e \"", Sig [] $ Pattern VowelString, Any),
+    --  ("\"i\"", Sig [] $ Pattern VowelString, Any),
+    --  ("\"o\"", Sig [] $ Pattern VowelString, Any),
+    --  ("\"u\"", Sig [] $ Pattern VowelString, Any),
+    --  ("\"a e i o u\"", Sig [] $ Pattern VowelString, Any)
    ]
    where numOp = Sig [OneOf[Float,Int]] $ F (Pattern $ Param 0) $ F (Pattern $ Param 0) (Pattern $ Param 0)
          floatOp = Sig [] $ F (Pattern Float) (F (Pattern Float) (Pattern Float))
