@@ -32,6 +32,7 @@ Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete
 - [ ] Extend from bi-gram representation to n-gram
 - [ ] Develop capabilities for machine evaluation of patterns
 - [ ] Develop a machine (artificial) aesthetic to distinguish patterns?
+- [ ] Add cabal file for the dependencies
 
 ## Citation
 
