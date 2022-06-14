@@ -9,12 +9,11 @@ Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete
 
 * Also add this repository to atom package directory. This can be found in this:
 
- `{ ~/Users/yourname/.atom/packages }`
+ ` ~/Users/yourname/.atom/packages `
 
-* Install dependencies for the project, by copying and pasting the following command(s) into the terminal.
+* Install dependencies for the project, by copying and pasting the following command(s) into the terminal and running:
 
-
- `{ cabal install --lib split scientific random network hosc }`
+ ` cabal install --lib split scientific random network hosc `
 
 * Open the terminal, cd into this repository>src
 
