@@ -1,11 +1,19 @@
-# fuzz-completer
+# Fuzz-completer
 
-Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete package. It allows you to produce unique and syntactically correct Tidal code produced by a machine counterpart for use in collaborative improvisation. 
+Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete package. It allows you to produce unique and syntactically correct Tidal code produced by a machine counterpart for use in collaborative improvisation.
 
 
-## To run 
+## To run
 
-* Git clone and add this repository to atom package directory ~/Users/yourname/.atom/packages
+* Git clone this repository to somewhere local on your computer.
+
+* Also add this repository to atom package directory. This can be found in this:
+
+'~/Users/yourname/.atom/packages'
+
+* Install dependencies for the project, by copying and pasting the following command(s) into the terminal.
+
+'cabal install --lib split scientific random network hosc'
 
 * Open the terminal, cd into this repository>src
 
@@ -21,7 +29,7 @@ Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete
 ## To-do
 
 - [ ] Mini-notation tokenisation and inclusion
-- [ ] Extend from bi-gram representation to n-gram 
+- [ ] Extend from bi-gram representation to n-gram
 - [ ] Develop capabilities for machine evaluation of patterns
 - [ ] Develop a machine (artificial) aesthetic to distinguish patterns?
 
@@ -32,4 +40,3 @@ Tidal autonomous agent "Fuzz" is a code generator combined with the autocomplete
   author={Wilson, E and Lawson, S and McLean, A and Stewart, J and others},
   year={2021}
 }
-
