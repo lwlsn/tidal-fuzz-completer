@@ -18,7 +18,7 @@ data State = State {sLocal :: UDP,
                     sRemote :: N.SockAddr
                    }
 
-listenPort = 12000
+listenPort = 9999
 remotePort = 8888
 
 main :: IO ()
@@ -43,29 +43,28 @@ listen = do -- listen
 
 act :: State -> Maybe O.Message -> IO State
 
-act st (Just (Message "/slider2DValX" [O.Float val])) = do
+act st (Just (Message "/subseq" [ASCII_String a_code])) = do
   r <- openUDP  "127.0.0.1" remotePort
-  putStrLn $ "Received x-coordinate"
---   codeOut <- returnFunc
---   let replace = map (\c -> if c=='\"' then '\''; else c)
---   sendMessage r $ Message "/reply" [string ("[\"" ++ replace (sCode codeOut) ++ "\"]")]
+  putStrLn $ "Received osc message from atom"
+  -- sendMessage r $ Message "/reply" [string "['jux', 'rev', 'sound', '\"bd sn\"']"]
+  -- sendMessage r $ Message "/reply" [string "[\"jux\", \"rev\", \"sound\", \"'bd sn cp hh'\"]"]
+  -- sendMessage r $ Message "/reply" [string "[\" (#) (every (fast '3 4 5' 1) rev $ jux $ rev $ sound  $ 'bd sn cp hh'\"]"]
+  codeOut <- returnFunc
+  let replace = map (\c -> if c=='\"' then '\''; else c)
+  -- putStrLn $ "[\"" ++ replace (sCode codeOut) ++ "\"]"
+  sendMessage r $ Message "/reply" [string ("[\"" ++ replace (sCode codeOut) ++ "\"]")]
   --do O.sendTo (sLocal st) (O.p_message "/pong" []) (sRemote st)
-  return st
-
-act st (Just (Message "/slider2DValY" [O.Float val])) = do
-  r <- openUDP  "127.0.0.1" remotePort
-  putStrLn $ "Received y-coordinate"
-  return st
-
-act st (Just (Message "/sliderVal" [O.Int32 val])) = do
-  r <- openUDP  "127.0.0.1" remotePort
-  putStrLn $ "Received temperature"
   return st
 
 act st Nothing = do putStrLn "not a message?"
                     return st
 act st (Just m) = do putStrLn $ "Unhandled message: " ++ show m
                      return st
+
+returnFunc  = do
+                aha <- Sound.Tidal.Types.wWalk $ Sig [] $ Pattern Osc
+                -- let replace = map (\c -> if c=='\"' then '\''; else c)
+                return aha
 
 
 sCode :: Code -> String
