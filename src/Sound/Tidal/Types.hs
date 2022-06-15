@@ -8,6 +8,7 @@ import Sound.Tidal.Ngrams
 import GHC.Float
 
 import System.Environment
+import System.IO
 
 
 data Type =
@@ -374,6 +375,20 @@ debug = False
 getEnvVars = do
               args <- getArgs
               return (args)
+
+
+-- Get ngrams learnt from the agent instead 
+
+
+-- rWalk :: Sig -> IO Code
+rWalk sig = do
+              -- get ngrams from corpus
+              handle <- openFile "Sound/Tidal/learntWeights.txt" ReadMode
+              contents <- hGetContents handle 
+              return contents
+
+
+--- Get ngrams from the corpus
 
 wWalk :: Sig -> IO Code
 wWalk sig = do

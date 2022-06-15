@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant return" #-}
 import Sound.OSC.FD as O
 import Control.Concurrent
 import Control.Concurrent.MVar
@@ -8,7 +10,7 @@ https://github.com/tidalcycles/tidal-listener/wiki
 -}
 
 
-import Sound.Tidal.Ngrams
+import Sound.Tidal.Ngrams 
 import Sound.Tidal.Types
 import Sound.Tidal.Tokeniser
 
@@ -61,6 +63,7 @@ act st Nothing = do putStrLn "not a message?"
 act st (Just m) = do putStrLn $ "Unhandled message: " ++ show m
                      return st
 
+returnFunc :: IO Code
 returnFunc  = do
                 aha <- Sound.Tidal.Types.wWalk $ Sig [] $ Pattern Osc
                 -- let replace = map (\c -> if c=='\"' then '\''; else c)
