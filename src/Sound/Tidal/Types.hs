@@ -1,14 +1,16 @@
 module Sound.Tidal.Types where
 
 import Data.List (intersectBy, nub, (\\))
-import Data.Maybe (fromMaybe, catMaybes, fromJust, isJust)
+import Data.Maybe (fromMaybe, catMaybes, fromJust, isJust, listToMaybe)
 import System.Random
 import Control.Monad
-import Sound.Tidal.Ngrams
+import Sound.Tidal.Ngrams ( lookupT, ngram, ngramOut, ngramSort )
+import Sound.Tidal.Tokeniser
 import GHC.Float
 
 import System.Environment
 import System.IO
+import Sound.Tidal.Context (PlayState(history))
 
 
 data Type =
@@ -379,18 +381,42 @@ getEnvVars = do
 
 -- Get ngrams learnt from the agent instead 
 
+getRFreqs :: IO String
+-- getRFreqs :: IO ([GHC.Types.Any], String)
+getRFreqs =  do
+                handle <- openFile "Sound/Tidal/learntweights.txt" ReadMode
+                ngramFreqs <- hGetContents handle
+                return ngramFreqs
+
+
 
 -- rWalk :: Sig -> IO Code
+-- rWalk :: p -> IO String
 rWalk sig = do
-              -- get ngrams from corpus
-              handle <- openFile "Sound/Tidal/learntWeights.txt" ReadMode
-              contents <- hGetContents handle 
-              return contents
+              ngramFreqs <-  getRFreqs
+              (history, code) <- wWalk' [] 1 (rContents $ ngramFreqs) sig 
+              code <- check (rContents $ ngramFreqs) history code 
+              return $ removeParens code
+  where
+    removeParens (Parens code) = code
+    removeParens code = code
+    check :: [([String], Int)] -> [String] -> Code -> IO Code
+    check ngramFreqs history code | "sound" `elem` history = return code
+                                  | otherwise = do when debug $ putStrLn "** [Trying again ..] **"
+                                                   (history', code') <- wWalk' history 1 ngramFreqs sig
+                                                   let code'' = Parens $ Arg (Name "(#)") (Arg code code')
+                                                       history'' = history' ++ history
+                                                   check ngramFreqs history'' code''
+
+
+
+rContents :: String -> [([String], Int)]
+rContents = read
 
 
 --- Get ngrams from the corpus
 
-wWalk :: Sig -> IO Code
+-- wWalk :: Sig -> IO Code
 wWalk sig = do
               -- get ngrams from corpus
               ngramFreqs <- lookupT
