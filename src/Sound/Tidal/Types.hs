@@ -162,10 +162,10 @@ functions =
     --         )
     -- , Max 1),
      ("rev", Sig [WildCard] $ F (Pattern $ Param 0) (Pattern $ Param 0), Any),
-     ("1", Sig [] $ Pattern Int, Any),
+    --  ("1", Sig [] $ Pattern Int, Any),
      ("2", Sig [] $ Pattern Int, Any),
      ("\"3 4 5\"", Sig [] $ Pattern Int, Any),
-     ("1", Sig [] $ Pattern Float, Any),
+    --  ("1", Sig [] $ Pattern Float, Any),
      ("2", Sig [] $ Pattern Float, Any),
      ("\"3 4 5\"", Sig [] $ Pattern Float, Any),
      {-
