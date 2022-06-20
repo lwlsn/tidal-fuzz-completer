@@ -11,7 +11,7 @@ https://github.com/tidalcycles/tidal-listener/wiki
 
 
 import Sound.Tidal.Ngrams 
-import Sound.Tidal.Types
+import Sound.Tidal.ReinfTypes
 import Sound.Tidal.Tokeniser
 
 import System.Environment
@@ -65,7 +65,7 @@ act st (Just m) = do putStrLn $ "Unhandled message: " ++ show m
 
 returnFunc :: IO Code
 returnFunc  = do
-                aha <- Sound.Tidal.Types.wWalk $ Sig [] $ Pattern Osc
+                aha <- Sound.Tidal.ReinfTypes.rWalk $ Sig [] $ Pattern Osc
                 -- let replace = map (\c -> if c=='\"' then '\''; else c)
                 return aha
 

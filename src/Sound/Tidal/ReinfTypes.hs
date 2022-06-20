@@ -1,4 +1,4 @@
-module Sound.Tidal.Types where
+module Sound.Tidal.ReinfTypes where
 
 import Data.List (intersectBy, nub, (\\))
 import Data.Maybe (fromMaybe, catMaybes, fromJust, isJust, listToMaybe)
