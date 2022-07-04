@@ -13,6 +13,7 @@ import Sound.Tidal.Types
 import Sound.Tidal.Tokeniser
 
 import System.Environment
+import GHC.IO.Encoding
 
 data State = State {sLocal :: UDP,
                     sRemote :: N.SockAddr
@@ -26,6 +27,7 @@ main = listen
 
 listen :: IO ()
 listen = do -- listen
+            setLocaleEncoding  utf8
             (remote_addr:_) <- N.getAddrInfo Nothing (Just "127.0.0.1") Nothing
             local <- udpServer "127.0.0.1" listenPort
             putStrLn $ "Listening for OSC commands on port " ++ show listenPort
