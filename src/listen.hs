@@ -1,4 +1,4 @@
-import Sound.OSC.FD as O
+import Sound.Osc.Fd as O
 import Control.Concurrent
 import Control.Concurrent.MVar
 import qualified Network.Socket as N
@@ -15,7 +15,7 @@ import Sound.Tidal.Tokeniser
 import System.Environment
 import GHC.IO.Encoding
 
-data State = State {sLocal :: UDP,
+data State = State {sLocal :: Udp,
                     sRemote :: N.SockAddr
                    }
 
@@ -45,8 +45,8 @@ listen = do -- listen
 
 act :: State -> Maybe O.Message -> IO State
 
-act st (Just (Message "/subseq" [ASCII_String a_code])) = do
-  r <- openUDP  "127.0.0.1" remotePort
+act st (Just (Message "/subseq" [AsciiString a_code])) = do
+  r <- openUdp  "127.0.0.1" remotePort
   putStrLn $ "Received osc message from atom"
   -- sendMessage r $ Message "/reply" [string "['jux', 'rev', 'sound', '\"bd sn\"']"]
   -- sendMessage r $ Message "/reply" [string "[\"jux\", \"rev\", \"sound\", \"'bd sn cp hh'\"]"]
